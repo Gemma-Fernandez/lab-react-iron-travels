@@ -5,6 +5,11 @@ import { useState } from "react";
 function TravelList() {
   const [listaTravel, setListaTravel] = useState(travelPlansData);
 
+  const handleDelete= (id)=>{
+    const arrTravel= listaTravel.filter( eachElement => eachElement.id !== id)
+    setListaTravel(arrTravel);
+  }
+
   return (
     <ul className="card-travel">
       {listaTravel.map((eachTravel, index) => (
@@ -18,9 +23,10 @@ function TravelList() {
             {eachTravel.destination} ({eachTravel.days} days)
           </h2>
           <h5> {eachTravel.description}</h5>
-          <h5> Price: {eachTravel.totalCost}</h5>
-          {eachTravel.totalCost <= 350 ? (<p style={{backgroundColor:"green"}}>Gran oferta!</p>) 
-          : (<p style={{backgroundColor:"gold"}}>Premium</p> )}
+          <h5 className="chollo"> Price: {eachTravel.totalCost}</h5>
+          {eachTravel.totalCost <= 350 ? (<p style={{color:"green"}}>Great Deal!</p>) 
+          : (<p style={{color:"gold"}}>Premium</p> )}
+          <button onClick={()=>handleDelete(eachTravel.id)}> Delete</button>
         </li>
       ))}
     </ul>
