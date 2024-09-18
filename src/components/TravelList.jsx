@@ -17,9 +17,10 @@ function TravelList() {
           <h2>
             {eachTravel.destination} ({eachTravel.days} days)
           </h2>
-          <br/>
           <h5> {eachTravel.description}</h5>
           <h5> Price: {eachTravel.totalCost}</h5>
+          {eachTravel.totalCost <= 350 ? (<p style={{backgroundColor:"green"}}>Gran oferta!</p>) 
+          : (<p style={{backgroundColor:"gold"}}>Premium</p> )}
         </li>
       ))}
     </ul>
